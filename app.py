@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
@@ -33,8 +33,11 @@ def hello_world():
   return render_template('home.html',
                          jobs=JOBS,
                         company_name='Johnson')
+@app.route("/api/jobs")
+def list_jobs():
+  return jsonify(JOBS)
 
 # print(__name__)
-if __name__ == "__main__":
+if __name__ == '__main__':
   # print("I'm inside the if now")
   app.run(host='0.0.0.0',debug=True)
